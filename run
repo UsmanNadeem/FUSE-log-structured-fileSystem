@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# rm -f lfs_filename
+./lfs_fuse -s -d ./lfs_mount_dir lfs_filename

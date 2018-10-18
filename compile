@@ -1,0 +1,14 @@
+#!/bin/bash
+
+sudo umount lfs_mount_dir
+
+rm -f a.out lfs_fuse ./bin/lfs_fuse.o ./bin/main.o
+
+# [ -d lfs_mount_dir ] && rmdir lfs_mount_dir
+sudo rm -f lfs_filename
+sudo rm -rf lfs_mount_dir
+
+clear
+
+g++ -std=c++11 -Wall -g -c ./src/lfs_fuse.c `pkg-config fuse --cflags --libs` -o ./bin/lfs_fuse.o -DFUSE_USE_VERSION=26 
+g++ -std=c++11 -Wall -g ./bin/lfs_fuse.o `pkg-config fuse --cflags --libs` -o lfs_fuse
